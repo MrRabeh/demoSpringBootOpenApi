@@ -1,0 +1,1 @@
+insert into produits values ('exemple 1',10,10);

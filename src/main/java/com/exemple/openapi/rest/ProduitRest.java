@@ -4,6 +4,7 @@ import com.exemple.openapi.metier.model.Produit;
 import com.exemple.openapi.metier.service.ProduitInterface;
 import com.exemple.openapi.metier.service.impl.ProduitImplementation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,7 +16,8 @@ import java.util.List;
 @RestController
 public class ProduitRest {
 
-    ProduitInterface produitInterface = new ProduitImplementation();
+    @Autowired
+    ProduitInterface produitInterface;
 
     @PutMapping("/ajout/{name}/{prix}/{quantite}")
     public Produit ajoutProduit(@PathVariable String name,@PathVariable double prix,@PathVariable int quantite){
