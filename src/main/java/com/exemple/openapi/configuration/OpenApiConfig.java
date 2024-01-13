@@ -15,6 +15,12 @@ import java.util.List;
 @Configuration
 public class OpenApiConfig {
 
+    @Value("${demo.url.local}")
+    String urlLocal;
+
+    @Value("${demo.url.prod}")
+    String urlProd;
+
     @Bean
     public OpenAPI monOpenApi(){
         val openapi = new OpenAPI();
@@ -26,6 +32,11 @@ public class OpenApiConfig {
         val info = getInfo(license, contact);
 
         openapi.info(info);
+
+        val local = getUrl(urlLocal);
+        val prod  = getUrl(urlProd);
+
+        openapi.servers(List.of(local,prod));
 
         return openapi;
     }

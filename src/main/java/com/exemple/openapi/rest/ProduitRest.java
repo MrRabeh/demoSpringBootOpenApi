@@ -14,6 +14,7 @@ import java.util.List;
 
 @Tag(name = "Produits",description = "API pour la gestion des Produits")
 @RestController
+@RequestMapping(value = "/produit")
 public class ProduitRest {
 
     @Autowired
@@ -24,16 +25,16 @@ public class ProduitRest {
             description = "Ajout Produit OK",
     content = {@Content(mediaType = "application/json",
     schema = @Schema(implementation = Produit.class))})
-    @PostMapping("/ajout")
+    @PostMapping(value = "/add")
     public Produit ajoutProduit(String name,double prix,int quantite){
         return produitInterface.ajout(name,prix,quantite);
     }
-    @GetMapping("/consulter-produits")
+    @GetMapping(value = "/get")
     public List<Produit> list(){
         return produitInterface.consultProduit();
     }
 
-    @GetMapping("/totalProduit")
+    @GetMapping(value = "/total")
     public int total(){
         return produitInterface.consultProduit().size();
     }
